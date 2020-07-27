@@ -1,21 +1,21 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Own from '@/view/own/index'
+import Vue from "vue";
+import Router from "vue-router";
+import Login from "@/components/Login";
+import SignUp from "@/components/SignUp";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: "/",
+      name: "Login",
+      component: Login
     },
     {
-      path:'/Own',
-      name: 'Own',
-      component: Own
+      path: "/SignUp",
+      name: "SignUp",
+      component: SignUp
     }
   ]
-})
+});
