@@ -23,8 +23,8 @@
 <!--                                <router-link :to="'register'"  style="color: white;">注册</router-link>-->
 <!--                            </div>-->
                             <div class="support-bar-right">
-                              <span style="color: white; margin-right: 10px">登录</span>
-                              <span :to="'register'"  style="color: white;">注册</span>
+                              <span style="color: white; margin-right: 10px; cursor: pointer" @click="dologin">登录</span>
+                              <span :to="'register'"  style="color: white; cursor: pointer" @click="dosignup">注册</span>
                             </div>
 <!--                        </div>-->
                     </div>
@@ -45,7 +45,15 @@
             return {
                 fromLastTime: 1,
             }
+        },
+      methods: {
+          dologin() {
+            this.$router.push("login")
+          },
+        dosignup() {
+          this.$router.push("signup")
         }
+      }
     }
 </script>
 
