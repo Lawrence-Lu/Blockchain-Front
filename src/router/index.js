@@ -4,7 +4,7 @@ import Home from "../components/Home";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 import index from "../components/index";
-import total from "../components/total";
+import Detail from "../components/Detail";
 
 Vue.use(Router)
 
@@ -17,6 +17,6 @@ export default new Router({
     {path: '/login', name: 'Login', component: Login},
     {path: '/signup', name: 'SignUp', component: SignUp},
     {path: '/purchased', name: 'index', component: index},
-    {path: '/profile', name: 'toatal', component: total},
+    {path: '/profile', name: 'Detail', component: Detail},
   ]
 })
