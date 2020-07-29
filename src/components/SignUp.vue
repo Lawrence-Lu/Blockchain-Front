@@ -42,7 +42,7 @@
       }
     },
     mounted() {
-      // document.body.style.backgroundColor = "#2D3A4B";
+      document.body.style.backgroundColor = "#2D3A4B";
     }
   };
 </script>
