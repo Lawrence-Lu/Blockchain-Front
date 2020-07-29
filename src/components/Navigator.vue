@@ -8,8 +8,8 @@
             <navigation-item class="navigation-item" path="/purchased">
                 <span slot="item-text" :class="{ 'active': this.$route.path==='/purchased' }">我的策略</span>
             </navigation-item>
-            <navigation-item class="navigation-item" path="/personalInfo">
-                <span slot="item-text" :class="{ 'active': this.$route.path==='/personalInfo' }">个人信息</span>
+            <navigation-item class="navigation-item" path="/profile">
+                <span slot="item-text" :class="{ 'active': this.$route.path==='/profile' }">个人信息</span>
             </navigation-item>
 
         </div>
