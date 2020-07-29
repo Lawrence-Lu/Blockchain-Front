@@ -1,58 +1,92 @@
 <template>
-  <div class="area">
-    <h2>基于区块链的量化投资平台</h2>
-    <el-input
-      v-model="username"
-      placeholder="请输入用户名"
-      style="width: 200px; max-height: fit-content;"
-      size="small"
-    ></el-input>
-    <br />
-    <br />
+  <div>
+    <breadcrump>登录</breadcrump>
+    <div class="login">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-5 col-lg-5">
+            <div class="part-form">
+              <h3 class="login-title">使用用户名进行登录</h3>
+              <div>
+                <input type="text" placeholder="请输入您的用户名" v-model="username"/>
+                <input type="password" placeholder="请输入您的密码" v-model="password"/>
+                <img src="../assets/img/captha.jpg" alt="">
+                <button  class="login-30" @click="login">登 录</button>
+              </div>
+              <span class="forget-password">忘记密码? <router-link :to="'/passwordback'"> 找回密码</router-link></span>
+            </div>
+          </div>
 
-    <el-input
-      placeholder="请输入密码"
-      v-model="password"
-      show-password
-      size="small"
-      style="width: 200px; max-height: fit-content;"
-      @keyup.enter="doLogin"
-    ></el-input>
-    <br />
-    <br />
-    <el-button type="primary" size="small" @click="doLogin">登录</el-button>
-    <el-button type="primary" size="small" @click="signin">注册</el-button>
+          <div class="col-xl-2 col-lg-2">
+            <div class="line">
+              <div class="or">Or</div>
+            </div>
+          </div>
+
+          <div class="col-xl-5 col-lg-5">
+            <div class="login-with-social">
+              <h3 class="login-title">其他登录方式</h3>
+              <a class="facebook social-link" href="#">使用短信验证登录</a>
+              <a class="google social-link" href="#">使用微信登录</a>
+              <a class="twitter social-link" href="#">使用支付宝登录</a>
+              <a class="linkedin social-link" href="#">使用Google登录</a>
+              <a class="instagram social-link" href="#">使用Facebook登录</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
+
+  import Breadcrump from "./Breadcrump";
   export default {
     name: "Login",
-    data() {
-      return {
-        username: "",
-        password: ""
-      };
+    components: {
+      Breadcrump
     },
-    methods: {
-      doLogin() {},
-      signin() {
-        this.$router.push("signup");
+    data () {
+      return {
+        username: '',
+        password: ''
       }
     },
-    mounted() {
-      document.body.style.backgroundColor = "#2D3A4B";
+    methods: {
+      login () {
+        this.$http.post('/user/login', this.$qs.stringify({username: this.username, password: this.password})).then(
+          res => {
+            if (res.data.code === 200) {
+              // 登录成功直接跳转，不要等待，否则降低用户体验
+              this.$router.push('/home')
+              this.$store.state.isLogin = true
+            } else {
+              this.$Message.error(res.data.msg)
+            }
+            console.log(res)
+          }
+        ).catch(err => {
+          this.$Message.error(err.toString())
+        })
+
+      }
     }
-  };
+  }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h2 {
-    color: white;
+  .login-30 {
+    font-size: 28px;
   }
-
-  .area {
-    margin-top: 120px;
+  .login-with-social a {
+    font-size: 18px;
+  }
+  .part-form form input {
+    font-size: 20px;
+  }
+  .part-form form input::placeholder {
+    font-size: 15px;
   }
 </style>
